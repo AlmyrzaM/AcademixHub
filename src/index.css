@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-midnight text-white font-sans antialiased relative;
+}
+
+a {
+  @apply text-white;
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-glow;
+}
+
+.gradient-border {
+  position: relative;
+  isolation: isolate;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 1.5rem;
+  background: linear-gradient(120deg, rgba(124,125,255,0.5), rgba(0,212,255,0.35), rgba(255,128,255,0.35));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.gradient-sheen {
+  background: linear-gradient(120deg, rgba(124,125,255,0.15), rgba(0,212,255,0.12), rgba(255,128,255,0.12));
+}
+
+.soft-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #0b1021 40%, rgba(124,125,255,0.15) 100%);
+}
+
+.hero-bg {
+  background-image: linear-gradient(120deg, rgba(124, 125, 255, 0.18), rgba(0, 212, 255, 0.12), rgba(255, 128, 255, 0.12)),
+    radial-gradient(circle at 10% 20%, rgba(124,125,255,0.25), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(0,212,255,0.22), transparent 45%),
+    radial-gradient(circle at 60% 70%, rgba(255,128,255,0.22), transparent 40%),
+    linear-gradient(180deg, rgba(12,18,38,0.95), rgba(9,14,30,0.95));
+  background-size: 200% 200%;
+  animation: gradientMove 14s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.noise-overlay {
+  background-image: var(--noise, theme('backgroundImage.noise'));
+  opacity: 0.25;
+  mix-blend-mode: soft-light;
+}
+
+.section-heading {
+  @apply text-3xl sm:text-4xl font-semibold text-white;
+}
+
+.subheading {
+  @apply text-base text-slate-300 max-w-2xl;
+}
